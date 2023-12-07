@@ -74,10 +74,16 @@
 
     <div id="canvasContainer">
         <canvas id="myCanvas" width="500" height="500"></canvas>
+        <!-- store情報 -->
     </div>
 
+     <a id="linkElement" href="http://example.com">元のリンク</a>
+
+
     <script>
+
         window.onload = function() {
+
             var canvas = document.getElementById('myCanvas');
             var ctx = canvas.getContext('2d');
             var menu = document.getElementById('menu');
@@ -92,6 +98,7 @@
             fetch(jsonFilePath).then(function(response) {
                 return response.json();
             }).then(function(data) {
+
                 imagesData = data;
                 imagesData.forEach(function(imageData, index) {
                     var li = document.createElement('li');
@@ -107,9 +114,11 @@
                 });
 
                 loadImage(0);
+
             });
 
             function loadImage(index) {
+
                 var selectedImage = imagesData[index];
                 currentImage.onload = function() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -126,9 +135,16 @@
                     });
                 };
                 currentImage.src = selectedImage.imageSrc;
+
+                // *** store情報 ***
+                var linkElement = document.getElementById("linkElement");
+                linkElement.innerHTML = "・" + selectedImage.store.name;
+                linkElement.href = selectedImage.store.url;
+
             }
 
             canvas.addEventListener('click', function(event) {
+
                 var rect = canvas.getBoundingClientRect();
                 var scaleX = canvas.width / rect.width;
                 var scaleY = canvas.height / rect.height;
@@ -137,6 +153,7 @@
                 var y = (event.clientY - rect.top) * scaleY;
 
                 console.log("{\"x\":" + x + ", \"y\": " + y + ", \"text\": \"\",\"interface\": \"\"},");
+
             });
         };
     </script>

@@ -2,6 +2,7 @@
     {
        "name" : "エアーコンプレッサー (3Lタンク付き)",
        "imageSrc": "image2.jpg",
+       "store": {"name": "amazon", "url": "https://www.amazon.co.jp/gp/product/B00DZ86QUC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1"},
        "points": [
             {"x":23.904382470119522, "y": 335.6573705179283, "text": "空圧口","interface":"R3/8" , "memo": "ネジ外径: 9.5mm, 高さ: 9mm"},
             {"x":324.57669322709165, "y": 445.2191235059761, "text": "空圧口","interface": "Rc3/8"},
@@ -12,6 +13,7 @@
     {
        "name" : "2L 塗装用圧力タンク",
        "imageSrc": "image.jpg",
+       "store": {"name":"aliexpress", "url":"https://ja.aliexpress.com/item/1005005876264050.html?spm=a2g0o.order_list.order_list_main.22.6584585ady5F4A&gatewayAdapt=glo2jpn"},
        "points": [
             {"x": 207.17, "y": 246.01, "text": "塗料口1", "interface": "R1/2"},
             {"x":192.23107569721117, "y": 151.39442231075697, "text": "空圧口1","interface":"R1/2" },
