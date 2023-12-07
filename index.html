@@ -8,35 +8,47 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex; /* Enable flex layout */
+            display: flex;
             background-color: #f0f0f0;
         }
 
         #sidebar {
-            width: 200px; /* Set a fixed width for the sidebar */
-            height: 100vh; /* Full viewport height */
+            width: 200px;
+            height: 100vh;
             background-color: #fff;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center items vertically in sidebar */
+            align-items: center;
             padding: 20px;
         }
 
-        #imageSelector {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            width: 100%; /* Make selector full width of sidebar */
-            box-sizing: border-box; /* Include padding and border in width calculation */
+        #menu {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        #menu li {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        #menu a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        #menu a:hover {
+            text-decoration: underline;
         }
 
         #canvasContainer {
-            flex-grow: 1; /* Take up the remaining space */
+            flex-grow: 1;
             display: flex;
-            justify-content: center; /* Center canvas horizontally */
-            align-items: center; /* Center canvas vertically */
+            justify-content: center;
+            align-items: center;
         }
 
         #myCanvas {
@@ -48,52 +60,59 @@
 <body>
 
     <div id="sidebar">
-        <select id="imageSelector"></select>
+        <ul id="menu">
+            <!-- 画像リンクはJavaScriptで動的に追加されます -->
+        </ul>
     </div>
     
     <div id="canvasContainer">
         <canvas id="myCanvas" width="500" height="500"></canvas>
     </div>
 
-<script>
+    <script>
         window.onload = function() {
             var canvas = document.getElementById('myCanvas');
             var ctx = canvas.getContext('2d');
-            var imageSelector = document.getElementById('imageSelector');
+            var menu = document.getElementById('menu');
+            var imagesData;
             var currentImage = new Image();
 
-            // コンフィグファイルからデータを読み込む
             fetch('config.json').then(function(response) {
                 return response.json();
-            }).then(function(imagesData) {
-                console.log(imagesData);
+            }).then(function(data) {
+                imagesData = data;
                 imagesData.forEach(function(imageData, index) {
-                    var option = document.createElement('option');
-                    option.value = index;
-                    option.textContent = imageData.name;
-                    imageSelector.appendChild(option);
+                    var li = document.createElement('li');
+                    var a = document.createElement('a');
+                    a.textContent = imageData.name;
+                    a.href = '#';
+                    a.onclick = function() {
+                        loadImage(index);
+                        return false;
+                    };
+                    li.appendChild(a);
+                    menu.appendChild(li);
                 });
 
-                imageSelector.onchange = function() {
-                    var selectedImage = imagesData[this.value];
-                    currentImage.onload = function() {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        ctx.drawImage(currentImage, 0, 0, 500, 500);
-                        selectedImage.points.forEach(function(point) {
-                            ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-                            ctx.beginPath();
-                            ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
-                            ctx.fill();
-                            ctx.font = "bold 20px Arial";
-                            ctx.fillText(point.text + "\n(" + point.interface + ")", point.x + 5, point.y);
-                        });
-                    };
-                    currentImage.src = selectedImage.imageSrc;
-                };
-
-                // 最初の画像をロード
-                imageSelector.onchange();
+                loadImage(0);
             });
+
+            function loadImage(index) {
+                var selectedImage = imagesData[index];
+                currentImage.onload = function() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(currentImage, 0, 0, 500, 500);
+                    selectedImage.points.forEach(function(point) {
+                        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+                        ctx.fill();
+                        ctx.font = "bold 20px Arial";
+                        ctx.fillText(point.text + "\n(" + point.interface + ")", point.x + 5, point.y);
+                    });
+                };
+                currentImage.src = selectedImage.imageSrc;
+            }
 
             canvas.addEventListener('click', function(event) {
                 var rect = canvas.getBoundingClientRect();
@@ -103,7 +122,7 @@
                 var x = (event.clientX - rect.left) * scaleX;
                 var y = (event.clientY - rect.top) * scaleY;
 
-                console.log("{\"x\":" + x + "," + " \"y\": " + y + ", \"text\": \"\",\"interface\": \"\"}," );
+                console.log("{\"x\":" + x + ", \"y\": " + y + ", \"text\": \"\",\"interface\": \"\"},");
             });
         };
     </script>
