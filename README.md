@@ -1,6 +1,6 @@
 # automation_database
 
-FA，ロボット系の自動化に使用する製品・インタフェースのデータベース.下記URLにlaunch.
+FA，ロボット系の自動化に使用する製品・インタフェースのデータベース.下記URLにlaunch.  
 
 https://hoshina-robotics.com/automation-database/
 
