@@ -25,3 +25,7 @@ https://hoshina-robotics.com/automation-database/
 ## 規格に関して
 
 - [管用ねじの種類とインチ呼びについて](https://www.monotaro.com/note/productinfo/kanyoneji/)
+
+## 背景削除
+
+https://www.remove.bg/ja/upload
