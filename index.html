@@ -71,7 +71,7 @@
             <!-- 画像リンクはJavaScriptで動的に追加されます -->
         </ul>
     </div>
-    
+
     <div id="canvasContainer">
         <canvas id="myCanvas" width="500" height="500"></canvas>
     </div>
@@ -84,7 +84,12 @@
             var imagesData;
             var currentImage = new Image();
 
-            fetch('db_interface.json').then(function(response) {
+            // URLからJSONファイルのパラメータを取得
+            var queryParams = new URLSearchParams(window.location.search);
+            var jsonFilePath = queryParams.get('json') || 'db_products.json'; // デフォルトのパスを設定
+            console.log(jsonFilePath);
+
+            fetch(jsonFilePath).then(function(response) {
                 return response.json();
             }).then(function(data) {
                 imagesData = data;
@@ -108,6 +113,8 @@
                 var selectedImage = imagesData[index];
                 currentImage.onload = function() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height); // 背景を白で塗りつぶす
                     ctx.drawImage(currentImage, 0, 0, 500, 500);
                     selectedImage.points.forEach(function(point) {
                         ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
@@ -136,4 +143,3 @@
 
 </body>
 </html>
-
