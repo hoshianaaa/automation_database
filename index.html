@@ -80,11 +80,23 @@
         }
 
         #copyButton {
-            margin-left: 10px;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
+          margin-left: 10px;
+          padding: 5px 10px;
+          font-size: 14px;
+          color: #fff; /* テキストの色を白に */
+          background-color: #3498db; /* 明るい青色 */
+          border: none;
+          border-radius: 5px; /* 角を丸く */
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
+          cursor: pointer;
+          transition: background-color 0.3s, box-shadow 0.3s; /* スムーズな遷移 */
         }
+
+        #copyButton:hover {
+          background-color: #2980b9; /* ホバー時の色を少し濃く */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 影を強調 */
+        }
+
     </style>
 </head>
 <body>
