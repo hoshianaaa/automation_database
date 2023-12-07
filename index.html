@@ -11,35 +11,52 @@
 </head>
 <body>
 
+    <select id="imageSelector"></select>
     <canvas id="myCanvas" width="500" height="500"></canvas>
 
     <script>
         window.onload = function() {
             var canvas = document.getElementById('myCanvas');
             var ctx = canvas.getContext('2d');
-            var image = new Image();
+            var imageSelector = document.getElementById('imageSelector');
+            var currentImage = new Image();
 
             // コンフィグファイルからデータを読み込む
             fetch('config.json').then(function(response) {
                 return response.json();
-            }).then(function(configData) {
-                image.onload = function() {
-                    ctx.drawImage(image, 0, 0, 500, 500);
-                    var points = configData.points;
-                    points.forEach(function(point) {
-                        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-                        ctx.beginPath();
-                        ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
-                        ctx.fill();
-                        ctx.font = "bold 20px Arial";
-                        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-                        ctx.fillText(point.text + "\n(" + point.interface + ")", point.x + 5, point.y);
-                    });
+            }).then(function(imagesData) {
+                console.log(imagesData);
+                imagesData.forEach(function(imageData, index) {
+                    var option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = imageData.name;
+                    imageSelector.appendChild(option);
+                });
+
+                imageSelector.onchange = function() {
+                    var selectedImage = imagesData[this.value];
+                    currentImage.onload = function() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(currentImage, 0, 0, 500, 500);
+                        selectedImage.points.forEach(function(point) {
+                            ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+                            ctx.beginPath();
+                            ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+                            ctx.fill();
+                            ctx.font = "bold 20px Arial";
+                            ctx.fillText(point.text + "\n(" + point.interface + ")", point.x + 5, point.y);
+                        });
+                    };
+                    currentImage.src = selectedImage.imageSrc;
                 };
-                image.src = configData.imageSrc;
+
+                // 最初の画像をロード
+                imageSelector.onchange();
             });
 
             canvas.addEventListener('click', function(event) {
+                // クリックイベントの処理
+                // ...
             });
         };
     </script>

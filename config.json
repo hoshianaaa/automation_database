@@ -1,8 +1,17 @@
-{
-    "imageSrc": "image.jpg",
-    "points": [
-        {"x": 207.17, "y": 246.01, "text": "塗料口", "interface": "R1/2"},
-        {"x": 310.75, "y": 101.59, "text": "空圧口1", "interface": ""},
-        {"x": 193.22, "y": 150.39, "text": "空圧口2", "interface": "R1/2"}
-    ]
-}
+[
+    {
+       "name" : "タンク",
+       "imageSrc": "image.jpg",
+       "points": [
+            {"x": 207.17, "y": 246.01, "text": "塗料口1", "interface": "R1/2"}
+       ]
+    },
+    {
+       "name" : "タンク2",
+       "imageSrc": "image.jpg",
+       "points": [
+            {"x": 207.17, "y": 246.01, "text": "塗料口2", "interface": "R1/2"}
+       ]
+    }
+]
+
