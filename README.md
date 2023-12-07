@@ -4,7 +4,7 @@
 
 # httpsサーバーの立ち上げ
 
-[netlify](https://www.netlify.com/)
+- [netlify](https://www.netlify.com/)
 
 # 画像のリサイズ
 
