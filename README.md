@@ -1,5 +1,7 @@
 # automation_database
 
+![Screenshot from 2023-12-07 00-12-15](https://github.com/hoshianaaa/automation_database/assets/40942409/552eac81-0328-4e0b-889f-7ee9759475e2)
+
 FA，ロボット系の自動化に使用する製品・インタフェースのデータベース.下記URLにlaunch.  
 
 https://hoshina-robotics.com/automation-database/
