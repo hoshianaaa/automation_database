@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Image Annotation with Click Coordinates</title>
+    <title>Image Annotation with External Config</title>
     <meta charset="UTF-8">
     <style>
-        /* CSS */
         #myCanvas {
             border: 1px solid black;
         }
@@ -15,51 +14,36 @@
     <canvas id="myCanvas" width="500" height="500"></canvas>
 
     <script>
-        // JavaScript
         window.onload = function() {
             var canvas = document.getElementById('myCanvas');
             var ctx = canvas.getContext('2d');
             var image = new Image();
-            image.onload = function() {
-                ctx.drawImage(image, 0, 0, 500, 500);
 
-                // 定義されたピクセル値とテキストのリスト
-                var points = [
-                    {x:207.17131474103587,y: 246.0159362549801, text: "塗料口", interface: "R1/2"},
-                    {x:310.7569721115538,y: 101.59362549800797, text: "空圧口1", interface: "R1/2"},
-                    {x:193.22709163346613,y: 150.398406374502, text: "空圧口2", interface: ""},
-                    // 他の点もここに追加...
-                ];
+            // コンフィグファイルからデータを読み込む
+            fetch('config.json').then(function(response) {
+                return response.json();
+            }).then(function(configData) {
+                image.onload = function() {
+                    ctx.drawImage(image, 0, 0, 500, 500);
+                    var points = configData.points;
+                    points.forEach(function(point) {
+                        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+                        ctx.fill();
+                        ctx.font = "bold 20px Arial";
+                        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+                        ctx.fillText(point.text + "\n(" + point.interface + ")", point.x + 5, point.y);
+                    });
+                };
+                image.src = configData.imageSrc;
+            });
 
-                // 点とテキストを描画
-                points.forEach(function(point) {
-                    // 点を描画
-                    ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-                    ctx.beginPath();
-                    ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
-                    ctx.fill();
-
-                    // テキストを描画
-                    ctx.font = "bold 20px Arial";
-                    ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-                    ctx.fillText(point.text + "\n(" + point.interface + ")", point.x + 5, point.y);
-                });
-            };
-            image.src = 'image.jpg'; // 画像のパスを指定
-
-            // キャンバスにクリックイベントリスナーを追加
             canvas.addEventListener('click', function(event) {
-                var rect = canvas.getBoundingClientRect();
-                var scaleX = canvas.width / rect.width;
-                var scaleY = canvas.height / rect.height;
-
-                var x = (event.clientX - rect.left) * scaleX;
-                var y = (event.clientY - rect.top) * scaleY;
-
-                console.log("{x:" + x + "," + "y: " + y + ", text: \"\" }," );
             });
         };
     </script>
 
 </body>
 </html>
+
