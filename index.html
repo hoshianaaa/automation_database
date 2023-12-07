@@ -1,60 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://unpkg.com/konva@8.3.14/konva.min.js"></script>
-    <meta charset="utf-8" />
-    <title>Konva Drag Events Demo</title>
+<head>
+    <title>Image Annotation</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #f0f0f0;
-      }
+        /* CSS */
+        #myCanvas {
+            border: 1px solid black;
+        }
     </style>
-  </head>
-  <body>
-  
-  <input type="button" value="button" onclick="buttonClick()">
-    <div id="container"></div>
+</head>
+<body>
+
+    <canvas id="myCanvas" width="100" height="100"></canvas>
+
     <script>
+        // JavaScript
+        window.onload = function() {
+            var canvas = document.getElementById('myCanvas');
+            var ctx = canvas.getContext('2d');
+            var image = new Image();
+            image.onload = function() {
+                ctx.drawImage(image, 0, 0, 100, 100);
 
-      var width = window.innerWidth;
-      var height = window.innerHeight;
+                // 定義されたピクセル値とテキストのリスト
+                var points = [
+                    {x: 10, y: 10, text: "Point 1"},
+                    {x: 20, y: 20, text: "Point 2"},
+                    // 他の点もここに追加...
+                ];
 
-      var stage = new Konva.Stage({
-        container: 'container',
-        width: 1980,
-        height: height,
-      });
+                // 点とテキストを描画
+                points.forEach(function(point) {
+                    // 点を描画
+                    ctx.fillStyle = "red";
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+                    ctx.fill();
 
-      var layer = new Konva.Layer();
-
-       stage.add(layer);
-
-      function buttonClick(){
-        console.log("a");
-
-        layer.add(
-          new Konva.Circle({
-          radius: 10,
-          fill: 'red',
-          stroke: 'black',
-          strokeWidth: 1,
-          draggable: true,
-         // opacity= 0.5,
-         opacity: 0.5,
-          x: 300,
-          y: 300,
-
-        })
-
-
-        );
-
-      }
-
+                    // テキストを描画
+                    ctx.fillStyle = "black";
+                    ctx.font = "10px Arial";
+                    ctx.fillText(point.text, point.x + 5, point.y);
+                });
+            };
+            image.src = 'image.jpg'; // 画像のパスを指定
+        };
     </script>
-  </body>
+
+</body>
 </html>
 
