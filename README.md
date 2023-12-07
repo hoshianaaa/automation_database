@@ -6,7 +6,7 @@
 
 # 画像のリサイズ
 
-- アップロードする画像サイズを統一する.現在は500 x 500.[webapp](https://fengyuanchen.github.io/compressorjs/)でwidht,heightを500に設定してダウンロード.
+- アップロードする画像サイズを統一する.現在は500 x 500.[webapp](https://fengyuanchen.github.io/compressorjs/ )でwidht,heightを500に設定してダウンロード.
  
 
 # 規格に関して
