@@ -65,12 +65,25 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
+        .link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
         #linkElement {
             color: #2c3e50; /* 青色 */
             text-decoration: none;
             font-size: 16px;
-            margin-top: 20px; /* キャンバスとの間隔 */
             align-self: center; /* 中央揃え */
+        }
+
+        #copyButton {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -84,7 +97,10 @@
 
     <div id="canvasContainer">
         <canvas id="myCanvas" width="500" height="500"></canvas>
-        <a id="linkElement" href="http://example.com">元のリンク</a>
+        <div class="link-container">
+            <a id="linkElement" href="http://example.com">元のリンク</a>
+            <button id="copyButton">コピー</button>
+        </div>
     </div>
 
     <script>
@@ -141,6 +157,14 @@
                 linkElement.innerHTML = "・" + selectedImage.store.name;
                 linkElement.href = selectedImage.store.url;
             }
+
+            var copyButton = document.getElementById('copyButton');
+            copyButton.addEventListener('click', function() {
+                var linkElement = document.getElementById('linkElement');
+                navigator.clipboard.writeText(linkElement.href)
+                    .then(() => alert('リンクがコピーされました!'))
+                    .catch(err => console.error('コピーに失敗: ', err));
+            });
 
             canvas.addEventListener('click', function(event) {
                 var rect = canvas.getBoundingClientRect();
