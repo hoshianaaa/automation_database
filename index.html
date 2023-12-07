@@ -55,8 +55,14 @@
             });
 
             canvas.addEventListener('click', function(event) {
-                // クリックイベントの処理
-                // ...
+                var rect = canvas.getBoundingClientRect();
+                var scaleX = canvas.width / rect.width;
+                var scaleY = canvas.height / rect.height;
+
+                var x = (event.clientX - rect.left) * scaleX;
+                var y = (event.clientY - rect.top) * scaleY;
+
+                console.log("{x:" + x + "," + "y: " + y + ", text: \"\",\"interface\":\"\" }," );
             });
         };
     </script>
