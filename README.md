@@ -11,3 +11,7 @@ wordpressの`iFrameプラグイン`を使用.
 アップロードする画像サイズを統一する.現在は500 x 500.
 下記appでwidht,heightを500に設定してダウンロード.
 https://fengyuanchen.github.io/compressorjs/ 
+
+# 規格に関して
+
+- [管用ねじの種類とインチ呼びについて](https://www.monotaro.com/note/productinfo/kanyoneji/)
