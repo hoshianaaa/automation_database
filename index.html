@@ -52,15 +52,25 @@
         #canvasContainer {
             flex-grow: 1;
             display: flex;
+            flex-direction: column; /* 子要素を縦に並べる */
             justify-content: center;
             align-items: center;
             background-color: #ecf0f1; /* 薄いグレー */
             border-left: 2px solid #2c3e50; /* サイドバーとの区切り線 */
+            padding: 20px;
         }
 
         #myCanvas {
             border: 1px solid black;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #linkElement {
+            color: #2c3e50; /* 青色 */
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px; /* キャンバスとの間隔 */
+            align-self: center; /* 中央揃え */
         }
     </style>
 </head>
@@ -74,31 +84,24 @@
 
     <div id="canvasContainer">
         <canvas id="myCanvas" width="500" height="500"></canvas>
-        <!-- store情報 -->
+        <a id="linkElement" href="http://example.com">元のリンク</a>
     </div>
 
-     <a id="linkElement" href="http://example.com">元のリンク</a>
-
-
     <script>
-
         window.onload = function() {
-
             var canvas = document.getElementById('myCanvas');
             var ctx = canvas.getContext('2d');
             var menu = document.getElementById('menu');
             var imagesData;
             var currentImage = new Image();
 
-            // URLからJSONファイルのパラメータを取得
             var queryParams = new URLSearchParams(window.location.search);
-            var jsonFilePath = queryParams.get('json') || 'db_products.json'; // デフォルトのパスを設定
+            var jsonFilePath = queryParams.get('json') || 'db_products.json';
             console.log(jsonFilePath);
 
             fetch(jsonFilePath).then(function(response) {
                 return response.json();
             }).then(function(data) {
-
                 imagesData = data;
                 imagesData.forEach(function(imageData, index) {
                     var li = document.createElement('li');
@@ -114,16 +117,14 @@
                 });
 
                 loadImage(0);
-
             });
 
             function loadImage(index) {
-
                 var selectedImage = imagesData[index];
                 currentImage.onload = function() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.fillStyle = 'white';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height); // 背景を白で塗りつぶす
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(currentImage, 0, 0, 500, 500);
                     selectedImage.points.forEach(function(point) {
                         ctx.fillStyle = "rgba(255, 0, 0, 0.8)";
@@ -136,15 +137,12 @@
                 };
                 currentImage.src = selectedImage.imageSrc;
 
-                // *** store情報 ***
                 var linkElement = document.getElementById("linkElement");
                 linkElement.innerHTML = "・" + selectedImage.store.name;
                 linkElement.href = selectedImage.store.url;
-
             }
 
             canvas.addEventListener('click', function(event) {
-
                 var rect = canvas.getBoundingClientRect();
                 var scaleX = canvas.width / rect.width;
                 var scaleY = canvas.height / rect.height;
@@ -153,10 +151,10 @@
                 var y = (event.clientY - rect.top) * scaleY;
 
                 console.log("{\"x\":" + x + ", \"y\": " + y + ", \"text\": \"\",\"interface\": \"\"},");
-
             });
         };
     </script>
 
 </body>
 </html>
+
