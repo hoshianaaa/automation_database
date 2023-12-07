@@ -161,9 +161,9 @@
             var copyButton = document.getElementById('copyButton');
             copyButton.addEventListener('click', function() {
                 var linkElement = document.getElementById('linkElement');
-                navigator.clipboard.writeText(linkElement.href)
-                    .then(() => alert('リンクがコピーされました!'))
-                    .catch(err => console.error('コピーに失敗: ', err));
+                navigator.clipboard.writeText(linkElement.href);
+                    //.then(() => alert('リンクがコピーされました!'))
+                    //.catch(err => console.error('コピーに失敗: ', err));
             });
 
             canvas.addEventListener('click', function(event) {
