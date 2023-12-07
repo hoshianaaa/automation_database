@@ -6,8 +6,21 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center; /* コンテンツを中央に配置 */
-            background-color: #f0f0f0; /* 背景色 */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Enable flex layout */
+            background-color: #f0f0f0;
+        }
+
+        #sidebar {
+            width: 200px; /* Set a fixed width for the sidebar */
+            height: 100vh; /* Full viewport height */
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items vertically in sidebar */
+            padding: 20px;
         }
 
         #imageSelector {
@@ -15,24 +28,34 @@
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
-            background-color: white;
-            font-size: 16px;
+            width: 100%; /* Make selector full width of sidebar */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+        }
+
+        #canvasContainer {
+            flex-grow: 1; /* Take up the remaining space */
+            display: flex;
+            justify-content: center; /* Center canvas horizontally */
+            align-items: center; /* Center canvas vertically */
         }
 
         #myCanvas {
             border: 1px solid black;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
 
-    <select id="imageSelector"></select>
-    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <div id="sidebar">
+        <select id="imageSelector"></select>
+    </div>
+    
+    <div id="canvasContainer">
+        <canvas id="myCanvas" width="500" height="500"></canvas>
+    </div>
 
-    <script>
+<script>
         window.onload = function() {
             var canvas = document.getElementById('myCanvas');
             var ctx = canvas.getContext('2d');
