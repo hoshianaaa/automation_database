@@ -30,11 +30,13 @@
         <canvas id="canvas" width="500" height="500"></canvas>
         <textarea id="paste-area" contenteditable="true"></textarea>
     </div>
+    <button id="save-btn">データ送付</button>
 
     <script>
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
         var pasteArea = document.getElementById('paste-area');
+        var saveBtn = document.getElementById('save-btn');
 
         pasteArea.addEventListener('paste', function(e) {
             e.preventDefault();
@@ -61,6 +63,14 @@
                     reader.readAsDataURL(blob);
                 }
             }
+        });
+
+        saveBtn.addEventListener('click', function() {
+            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            var link = document.createElement('a');
+            link.download = 'my-image.png';
+            link.href = image;
+            link.click();
         });
     </script>
 </body>
