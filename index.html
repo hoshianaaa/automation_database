@@ -80,23 +80,41 @@
         }
 
         #copyButton {
-          margin-left: 10px;
-          padding: 5px 10px;
-          font-size: 14px;
-          color: #fff; /* テキストの色を白に */
-          background-color: #3498db; /* 明るい青色 */
-          border: none;
-          border-radius: 5px; /* 角を丸く */
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
-          cursor: pointer;
-          transition: background-color 0.3s, box-shadow 0.3s; /* スムーズな遷移 */
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff; /* テキストの色を白に */
+            background-color: #3498db; /* 明るい青色 */
+            border: none;
+            border-radius: 5px; /* 角を丸く */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s; /* スムーズな遷移 */
         }
 
         #copyButton:hover {
-          background-color: #2980b9; /* ホバー時の色を少し濃く */
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 影を強調 */
+            background-color: #2980b9; /* ホバー時の色を少し濃く */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 影を強調 */
         }
 
+        /* 「開く」ボタンのスタイル */
+        #openButton {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff; /* テキストの色を白に */
+            background-color: #27ae60; /* 緑色 */
+            border: none;
+            border-radius: 5px; /* 角を丸く */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s; /* スムーズな遷移 */
+        }
+
+        #openButton:hover {
+            background-color: #2ecc71; /* ホバー時の色を少し濃く */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 影を強調 */
+        }
     </style>
 </head>
 <body>
@@ -112,6 +130,7 @@
         <div class="link-container">
             <a id="linkElement" href="http://example.com">元のリンク</a>
             <button id="copyButton">コピー</button>
+            <button id="openButton">開く</button> <!-- 新しい「開く」ボタン -->
         </div>
         <div id="coordsDisplay" style="margin-top: 20px;"></div> <!-- 追加された座標表示用の要素 -->
     </div>
@@ -179,6 +198,12 @@
                     //.catch(err => console.error('コピーに失敗: ', err));
             });
 
+            var openButton = document.getElementById('openButton');
+            openButton.addEventListener('click', function() {
+                var linkElement = document.getElementById('linkElement');
+                window.open(linkElement.href, '_blank');
+            });
+
             canvas.addEventListener('click', function(event) {
                 var rect = canvas.getBoundingClientRect();
                 var scaleX = canvas.width / rect.width;
@@ -196,3 +221,4 @@
 
 </body>
 </html>
+
