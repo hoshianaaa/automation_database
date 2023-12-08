@@ -32,7 +32,25 @@
           {"x":337.64940239043824, "y": 373.9243027888446, "text": "塗料口2","interface": "R3/8", "memo":"9.2mm オス"},
           {"x":393.42629482071715, "y": 392.9282868525896, "text": "空気圧口2","interface": "R3/8", "memo":"9.2mm オス"}
        ]
+    },
+    {
+       "name" : "ワンタッチ継手 フィメイルコネクタ",
+       "imageSrc": "image4.png",
+       "store": {"name": "misumi", "url": "https://jp.misumi-ec.com/vona2/detail/110302223840/?list=PageSCate"},
+       "points": [
+
+       ]
+    },
+    {
+       "name" : "日東工器 ハイカプラ ソケット 20SM 全長:55.5mm",
+       "imageSrc": "image5.png",
+       "store": {"name": "amazon", "url": "https://www.amazon.co.jp/gp/product/B00898A1TK/ref=ox_sc_act_title_1?smid=AN1VRQENFRJN5&th=1"},
+       "points": [
+
+       ]
     }
+
+
 
 ]
 
