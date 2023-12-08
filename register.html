@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #canvas-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        #canvas {
+            border: 1px solid black;
+            background-color: white;
+            width: 100%;
+            height: 100%;
+        }
+        #paste-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* 透明に設定 */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Image Paste and Resize Demo</h2>
+    <div id="canvas-container">
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <textarea id="paste-area" contenteditable="true"></textarea>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var pasteArea = document.getElementById('paste-area');
+
+        pasteArea.addEventListener('paste', function(e) {
+            e.preventDefault();
+            var items = (e.clipboardData || e.originalEvent.clipboardData).items;
+            for (var index in items) {
+                var item = items[index];
+                if (item.kind === 'file') {
+                    var blob = item.getAsFile();
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        var img = new Image();
+                        img.onload = function() {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            var hRatio = canvas.width / img.width;
+                            var vRatio = canvas.height / img.height;
+                            var ratio = Math.min(hRatio, vRatio);
+                            var centerShift_x = (canvas.width - img.width * ratio) / 2;
+                            var centerShift_y = (canvas.height - img.height * ratio) / 2;
+                            ctx.drawImage(img, 0, 0, img.width, img.height,
+                                          centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+                        }
+                        img.src = event.target.result;
+                    };
+                    reader.readAsDataURL(blob);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
