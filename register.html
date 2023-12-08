@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
         #canvas-container {
             position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 500px;
             height: 500px;
+            background-color: #fff;
         }
         #canvas {
-            border: 1px solid black;
-            background-color: white;
             width: 100%;
             height: 100%;
+            border: none;
         }
         #paste-area {
             position: absolute;
@@ -20,17 +30,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0; /* 透明に設定 */
+            opacity: 0;
             cursor: pointer;
+        }
+        #save-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        #save-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div id="canvas-container">
-        <canvas id="canvas" width="500" height="500"></canvas>
-        <textarea id="paste-area" contenteditable="true"></textarea>
+    <div>
+        <div id="canvas-container">
+            <canvas id="canvas" width="500" height="500"></canvas>
+            <textarea id="paste-area" contenteditable="true"></textarea>
+        </div>
+        <button id="save-btn">データ送付</button>
     </div>
-    <button id="save-btn">データ送付</button>
 
     <script>
         var canvas = document.getElementById('canvas');
