@@ -5,12 +5,13 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+
         }
         #canvas-container {
             position: relative;
@@ -34,15 +35,17 @@
             cursor: pointer;
         }
         #save-btn {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
             margin-top: 15px;
-            font-size: 16px;
-            transition: background-color 0.3s;
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #fff; /* テキストの色を白に */
+            background-color: #3498db; /* 明るい青色 */
+            border: none;
+            border-radius: 5px; /* 角を丸く */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s; /* スムーズな遷移 */
         }
         #save-btn:hover {
             background-color: #0056b3;
