@@ -38,7 +38,8 @@
        "imageSrc": "image4.png",
        "store": {"name": "misumi", "url": "https://jp.misumi-ec.com/vona2/detail/110302223840/?list=PageSCate"},
        "points": [
-
+          {"x":80.67729083665338, "y": 341.1354581673307, "text": "","interface": "ワンタッチ継ぎ手6mm", "memo":""},
+          {"x":459.1633466135458, "y": 152.88844621513945, "text": "","interface": "Rc3/8", "memo":""}
        ]
     },
     {
@@ -46,7 +47,6 @@
        "imageSrc": "image5.png",
        "store": {"name": "amazon", "url": "https://www.amazon.co.jp/gp/product/B00898A1TK/ref=ox_sc_act_title_1?smid=AN1VRQENFRJN5&th=1"},
        "points": [
-
        ]
     }
 
