@@ -50,7 +50,15 @@
           {"x":71.89990039840637, "y": 367.52988047808765, "text": "","interface": "R1/4", "memo":""},
           {"x":287.14828187251, "y": 129.4820717131474, "text": "","interface": "20SM", "memo":""}
        ]
+    },
+    {
+       "name" : "千代田通商 チヨダ ファイブフィメイルバルク 6mm・RC1/4 F6-02FB",
+       "imageSrc": "image6.png",
+       "store": {"name": "ASKUL", "url": "https://www.askul.co.jp/p/6494900/?sc_e=cp_p_as_go_pl_c_strategy1_6494900&utm_source=go&utm_medium=PLA&utm_campaign=PLA_SSC_All&gad_source=1&gclid=CjwKCAiAmsurBhBvEiwA6e-WPHReTFQMeACuT0ydQGUZB3cx-zlj3ng1BaZ7icByltlYtfyw8nDviRoC6xEQAvD_BwE"},
+       "points": [
+       ]
     }
+
 
 
 
