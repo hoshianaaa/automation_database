@@ -29,3 +29,11 @@ https://hoshina-robotics.com/automation-database/
 ## 背景削除
 
 https://www.remove.bg/ja/upload
+
+## インチ-mm 対応
+
+```
+3/8 inch = 9.5 mm
+1/2 inch = 12.7 mm
+```
+
