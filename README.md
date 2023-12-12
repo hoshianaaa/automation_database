@@ -30,10 +30,11 @@ https://hoshina-robotics.com/automation-database/
 
 https://www.remove.bg/ja/upload
 
-## インチ-mm 対応
+## インチ呼びと代表寸法
 
-```
-3/8 inch = 9.5 mm
-1/2 inch = 12.7 mm
-```
+![image](https://github.com/hoshianaaa/automation_database/assets/40942409/0d54b2f0-3d83-4f69-8e11-4352aafe2669)
+
+https://www.monotaro.com/note/productinfo/kapra_basics/
+
+モノタロウより
 
